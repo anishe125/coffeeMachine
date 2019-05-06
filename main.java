@@ -107,6 +107,48 @@ class myCoffeeMachine {
         }
     }
 
+    private boolean isEnough(String type) {
+        boolean enough = false;
+
+        int waterLimit;
+        int milkLimit;
+        int beansLimit;
+
+        switch (type) {
+            case "1": // espresso
+                waterLimit = 250;
+                milkLimit = 0;
+                beansLimit = 16;
+                break;
+            case "2": // latte
+                waterLimit = 350;
+                milkLimit = 75;
+                beansLimit = 20;
+                break;
+            case "3": // cappuccino
+                waterLimit = 200;
+                milkLimit = 100;
+                beansLimit = 12;
+                break;
+            default:
+                return false;
+        }
+        if (this.water < waterLimit) {
+            System.out.println("Sorry, not enough water!");
+        } else if (this.milk < milkLimit) {
+            System.out.println("Sorry, not enough milk!");
+        } else if (this.beans < beansLimit) {
+            System.out.println("Sorry, not enough coffee beans!");
+        } else if (this.cups < 1) {
+            System.out.println("Sorry, not enough disposable cups!");
+        } else {
+            enough = true;
+            System.out.println("I have enough resources, making you a coffee!");
+        }
+
+        return enough;
+    }
+
     private void buy() {
         switch (this.state) {
             case READY:
@@ -205,47 +247,5 @@ class myCoffeeMachine {
         System.out.println(this.cups + " of disposable cups");
         System.out.println("$" + this.money + " of money");
         ready();
-    }
-
-    private boolean isEnough(String type) {
-        boolean enough = false;
-
-        int waterLimit;
-        int milkLimit;
-        int beansLimit;
-
-        switch (type) {
-            case "1": // espresso
-                waterLimit = 250;
-                milkLimit = 0;
-                beansLimit = 16;
-                break;
-            case "2": // latte
-                waterLimit = 350;
-                milkLimit = 75;
-                beansLimit = 20;
-                break;
-            case "3": // cappuccino
-                waterLimit = 200;
-                milkLimit = 100;
-                beansLimit = 12;
-                break;
-            default:
-                return false;
-        }
-        if (this.water < waterLimit) {
-            System.out.println("Sorry, not enough water!");
-        } else if (this.milk < milkLimit) {
-            System.out.println("Sorry, not enough milk!");
-        } else if (this.beans < beansLimit) {
-            System.out.println("Sorry, not enough coffee beans!");
-        } else if (this.cups < 1) {
-            System.out.println("Sorry, not enough disposable cups!");
-        } else {
-            enough = true;
-            System.out.println("I have enough resources, making you a coffee!");
-        }
-
-        return enough;
     }
 }
